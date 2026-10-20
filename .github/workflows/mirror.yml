@@ -1,18 +1,11 @@
 
-
-
-
 name: GitLab to GitHub Mirror
 
 on:
   schedule:
     - cron: '23 * * * *'
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
-    
 permissions:
   contents: write
 
@@ -34,8 +27,6 @@ jobs:
 
           cd source.git
 
-          git remote add github \
-            "https://x-access-token:${GH_MIRROR_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-
-          git push --force github \
+          git push --force \
+            "https://x-access-token:${GH_MIRROR_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
             refs/heads/main:refs/heads/main
