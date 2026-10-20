@@ -1,0 +1,34 @@
+
+name: GitLab to GitHub Mirror
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Mirror GitLab main to GitHub main
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          git clone --bare \
+            "https://oauth2:${GITLAB_TOKEN}@course-gitlab.tuni.fi/compcs320-fall2026/bbh373.git" \
+            source.git
+
+          cd source.git
+
+          git remote add github \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          git push --force github \
+            refs/heads/main:refs/heads/main
