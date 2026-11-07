@@ -33,10 +33,10 @@ This repository contains my coursework and exercise solutions for **COMP.CS.320 
 
 ```
 .
-├── week1/          # Exercise solutions for Week 1
-├── week2/          # Exercise solutions for Week 2
+├── Exercise-1-python.ipynb          # Exercise solutions for Week 1
+├── Exercise-2-python.ipynb         # Exercise solutions for Week 2
+├── Exercise-3-python.ipynb           # Exercise solutions for Week 3
 ├── ...
-├── project/        # Course project (if applicable)
 └── README.md
 ```
 
